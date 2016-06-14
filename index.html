@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Qmworks by SCM-NV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Qmworks</h1>
+      <h2 class="project-tagline">This library tackles the construction and efficient execution of computational chemistry workflows</h2>
+      <a href="https://github.com/SCM-NV/qmworks" class="btn">View on GitHub</a>
+      <a href="https://github.com/SCM-NV/qmworks/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/SCM-NV/qmworks/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1></h1>
+
+<h1>
+<a id="qmworks" class="anchor" href="#qmworks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>QMWorks</h1>
+
+<h1>
+<a id="motivation" class="anchor" href="#motivation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Motivation</h1>
+
+<p>Research on modern computational quantum chemistry relies on a set of computational
+tools to carry out calculations. The complexity of the calculations usually requires 
+intercommunication between the aforementioned tools, such communication is usually done 
+through shell scripts that try to automate input/output actions like: launching 
+the computations in a cluster, reading the resulting output and feeding the relevant
+numerical result to another program. Such scripts are difficult to maintain and extend,
+requiring a significant programming expertise to work with them. Being then desirable a
+set of automatic and extensible tools that allows to perform complex simulations in
+heterogeneous hardware platforms.</p>
+
+<p>This library tackles the construction and efficient execution of computational chemistry workflows.
+This allows computational chemists to use the emerging massively parallel compute environments in
+an easy manner and focus on interpretation of scientific data rather than on tedious job submission
+procedures and manual data processing. </p>
+
+<h1>
+<a id="description" class="anchor" href="#description" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Description</h1>
+
+<p>This library consists of a set of modules written in Python 3.5,
+offering the following features:</p>
+
+<ol>
+<li><p>Quantum chemistry Workflows execution using Noodles_.</p></li>
+<li><p>Automatic input generation for several quantum packages.</p></li>
+<li><p>Broadcasting numerical results between quantum chemistry.</p></li>
+</ol>
+
+<h1>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h1>
+
+<p>First check that you have available in your system <strong>Python 3.5</strong>. Otherwise, you can download it from here_.
+Because <strong>QMWorks</strong> depends on a set of libraries that are not pat of the python ecosystem, you need first
+to install these dependecies_  using a virtual-environment_. Finally, you can proceed to the package installation_</p>
+
+<p>.. _virtual-environment:</p>
+
+<h1>
+<a id="installation-using-a-virtual-environment-recommended" class="anchor" href="#installation-using-a-virtual-environment-recommended" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation using a virtual environment (recommended)</h1>
+
+<ul>
+<li><p>Download miniconda for python 3.5: miniconda_ (also you can install the complete anaconda_ version).</p></li>
+<li><p>Install according to: installConda_. </p></li>
+<li><p>Reopen terminal (or type <code>source ~/.bashrc</code>).</p></li>
+<li>
+<p>Create a new virtual environment using the following commands:</p>
+
+<ul>
+<li>
+<code>conda create -n qmworks python</code> </li>
+</ul>
+</li>
+<li>
+<p>Activate the new virtual environment</p>
+
+<ul>
+<li><code>source activate qmworks</code></li>
+</ul>
+</li>
+</ul>
+
+<p>To exit the virtual environment type  <code>source deactivate</code>.</p>
+
+<p>.. _dependecies:</p>
+
+<h2>
+<a id="dependencies-installation" class="anchor" href="#dependencies-installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependencies installation</h2>
+
+<p>Using the conda environment the following packages should be installed:    </p>
+
+<ul>
+<li>
+<p>install rdkit_ using the following command:</p>
+
+<ul>
+<li><code>conda install -y -q -c https://conda.anaconda.org/rdkit rdkit</code></li>
+</ul>
+</li>
+<li>
+<p>install HDF5_ using conda:</p>
+
+<p>-<code>conda install -c anaconda hdf5</code></p>
+</li>
+</ul>
+
+<p>.. _installation:</p>
+
+<h2>
+<a id="package-installation" class="anchor" href="#package-installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Package installation</h2>
+
+<ul>
+<li><p>Create a new directory <em>escience</em> in your home folder.</p></li>
+<li><p>Move to the <em>escience</em> folder.</p></li>
+<li>
+<p>Clone Plams_  using the following commands:</p>
+
+<ul>
+<li><code>git clone -b escience git@gitlab.pyadf.org:e-science/plams.git</code></li>
+</ul>
+</li>
+<li>
+<p>Change to directory <em>$HOME/escience/plams</em> and type:</p>
+
+<p><code>pip install .</code></p>
+</li>
+<li>
+<p>Modify the anaconda activation file for Plams adding the following line <code>export PLAMSDEFAULTS=$HOME/escience/plams/utils/plams_defaults.py</code> to the file </p>
+
+<p><code>$HOME/miniconda3/envs/qmworks/bin/activate</code> or
+<code>$HOME/anaconda/envs/qmworks/bin/activate</code></p>
+
+<p>You can find the path to your activation file running the command <code>conda info --envs</code>.</p>
+</li>
+<li>
+<p>Type in your terminal,</p>
+
+<p><code>source activate qmworks</code></p>
+</li>
+<li>
+<p>Change to directory <em>$HOME/escience</em> and type:</p>
+
+<p>-<code>pip install https://github.com/SCM-NV/qmworks/tarball/master#egg=qmworks -e git://github.com/NLeSC/noodles.git@devel#egg=Noodles</code></p>
+</li>
+</ul>
+
+<p>Now you are ready to use <em>qmworks</em>. </p>
+
+<p><strong>Notes:</strong></p>
+
+<ul>
+<li>Once the libraries and the virtual environment are installed, you only need to type
+<code>source active qmworks</code> each time that you want to use the software.</li>
+</ul>
+
+<p>.. _miniconda: <a href="http://conda.pydata.org/miniconda.html">http://conda.pydata.org/miniconda.html</a>
+.. _anaconda: <a href="https://www.continuum.io/downloads">https://www.continuum.io/downloads</a>
+.. _installConda: <a href="http://conda.pydata.org/docs/install/quick.html">http://conda.pydata.org/docs/install/quick.html</a>
+.. _Noodles: <a href="https://gitlab.pyadf.org/e-science/workflow-engine">https://gitlab.pyadf.org/e-science/workflow-engine</a>
+.. _HDF5: <a href="http://www.h5py.org/">http://www.h5py.org/</a> 
+.. _here: <a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a>
+.. _rdkit: <a href="http://www.rdkit.org">http://www.rdkit.org</a>
+.. _Plams: <a href="https://www.scm.com/documentation/Tutorials/Scripting/first_steps_with_plams/">https://www.scm.com/documentation/Tutorials/Scripting/first_steps_with_plams/</a></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/SCM-NV/qmworks">Qmworks</a> is maintained by <a href="https://github.com/SCM-NV">SCM-NV</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
