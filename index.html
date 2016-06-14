@@ -49,7 +49,7 @@ procedures and manual data processing. </p>
 offering the following features:</p>
 
 <ol>
-<li><p>Quantum chemistry Workflows execution using Noodles_.</p></li>
+<li><p>Quantum chemistry Workflows execution using <a href="https://gitlab.pyadf.org/e-science/workflow-engine">Noodles</a>.</p></li>
 <li><p>Automatic input generation for several quantum packages.</p></li>
 <li><p>Broadcasting numerical results between quantum chemistry.</p></li>
 </ol>
@@ -57,18 +57,16 @@ offering the following features:</p>
 <h1>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h1>
 
-<p>First check that you have available in your system <strong>Python 3.5</strong>. Otherwise, you can download it from here_.
+<p>First check that you have available in your system <strong>Python 3.5</strong>. Otherwise, you can download it from <a href="https://www.python.org/downloads/">here</a> 
 Because <strong>QMWorks</strong> depends on a set of libraries that are not pat of the python ecosystem, you need first
-to install these dependecies_  using a virtual-environment_. Finally, you can proceed to the package installation_</p>
-
-<p>.. _virtual-environment:</p>
+to install the dependencies using a virtual environment. Finally, you can proceed to the package installation.</p>
 
 <h1>
 <a id="installation-using-a-virtual-environment-recommended" class="anchor" href="#installation-using-a-virtual-environment-recommended" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation using a virtual environment (recommended)</h1>
 
 <ul>
-<li><p>Download miniconda for python 3.5: miniconda_ (also you can install the complete anaconda_ version).</p></li>
-<li><p>Install according to: installConda_. </p></li>
+<li><p>Download<a href="http://conda.pydata.org/miniconda.html">miniconda</a> for python 3.5. Also you can install the complete <a href="https://www.continuum.io/downloads">anaconda</a> version.</p></li>
+<li><p>Install according to: <a href="http://conda.pydata.org/docs/install/quick.html">install Conda</a>installConda_. </p></li>
 <li><p>Reopen terminal (or type <code>source ~/.bashrc</code>).</p></li>
 <li>
 <p>Create a new virtual environment using the following commands:</p>
@@ -98,14 +96,14 @@ to install these dependecies_  using a virtual-environment_. Finally, you can pr
 
 <ul>
 <li>
-<p>install rdkit_ using the following command:</p>
+<p>install <a href="http://www.rdkit.org">rdkit</a>using the following command:</p>
 
 <ul>
 <li><code>conda install -y -q -c https://conda.anaconda.org/rdkit rdkit</code></li>
 </ul>
 </li>
 <li>
-<p>install HDF5_ using conda:</p>
+<p>install <a href="http://www.h5py.org/">HDF5</a>using conda:</p>
 
 <p>-<code>conda install -c anaconda hdf5</code></p>
 </li>
@@ -120,7 +118,7 @@ to install these dependecies_  using a virtual-environment_. Finally, you can pr
 <li><p>Create a new directory <em>escience</em> in your home folder.</p></li>
 <li><p>Move to the <em>escience</em> folder.</p></li>
 <li>
-<p>Clone Plams_  using the following commands:</p>
+<p>Clone <a href="https://www.scm.com/documentation/Tutorials/Scripting/first_steps_with_plams/">Plams</a>  using the following commands:</p>
 
 <ul>
 <li><code>git clone -b escience git@gitlab.pyadf.org:e-science/plams.git</code></li>
@@ -159,15 +157,6 @@ to install these dependecies_  using a virtual-environment_. Finally, you can pr
 <li>Once the libraries and the virtual environment are installed, you only need to type
 <code>source active qmworks</code> each time that you want to use the software.</li>
 </ul>
-
-<p>.. _miniconda: <a href="http://conda.pydata.org/miniconda.html">http://conda.pydata.org/miniconda.html</a>
-.. _anaconda: <a href="https://www.continuum.io/downloads">https://www.continuum.io/downloads</a>
-.. _installConda: <a href="http://conda.pydata.org/docs/install/quick.html">http://conda.pydata.org/docs/install/quick.html</a>
-.. _Noodles: <a href="https://gitlab.pyadf.org/e-science/workflow-engine">https://gitlab.pyadf.org/e-science/workflow-engine</a>
-.. _HDF5: <a href="http://www.h5py.org/">http://www.h5py.org/</a> 
-.. _here: <a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a>
-.. _rdkit: <a href="http://www.rdkit.org">http://www.rdkit.org</a>
-.. _Plams: <a href="https://www.scm.com/documentation/Tutorials/Scripting/first_steps_with_plams/">https://www.scm.com/documentation/Tutorials/Scripting/first_steps_with_plams/</a></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/SCM-NV/qmworks">Qmworks</a> is maintained by <a href="https://github.com/SCM-NV">SCM-NV</a>.</span>
