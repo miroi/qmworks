@@ -6,7 +6,7 @@ import plams
 import pkg_resources as pkg
 
 # ==================> Internal modules <====================
-from noodles import (schedule_hint, has_scheduled_methods, serial)
+from noodles import (files, schedule_hint, has_scheduled_methods, serial)
 from noodles.display import (NCDisplay)
 from noodles.run.run_with_prov import run_parallel_opt
 from noodles.serial import (Serialiser, Registry, AsDict)
@@ -142,7 +142,7 @@ def call_default(job, n_processes=1):
     with NCDisplay() as display:
         return run_parallel_opt(
             job, n_threads=n_processes,
-            registry=registry, jobdb_file='cache.json',
+            registry= registry, jobdb_file='cache.json',
             display=display)
 
 
@@ -201,7 +201,7 @@ def registry():
     and decode this Package object.
     """
     return Registry(
-        parent=serial.base(),
+        parent=serial.base() + files.registry(),
         types={
             Package: AsDict(Package),
             plams.Molecule: SerMolecule(),
