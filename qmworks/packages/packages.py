@@ -9,6 +9,8 @@ import pkg_resources as pkg
 from noodles import (files, schedule_hint, has_scheduled_methods, serial)
 from noodles.display import (NCDisplay)
 from noodles.run.run_with_prov import run_parallel_opt
+from noodles.run.xenon import (run_xenon_prov, XenonConfig,
+                               RemoteJobConfig, XenonKeeper)
 from noodles.serial import (Serialiser, Registry, AsDict)
 from noodles.serial.base import SerAutoStorable
 
@@ -128,38 +130,49 @@ def run(job, runner=None, **kwargs):
     :param runner: Type of runner to use
     :type runner: String
     """
+    with NCDisplay() as display:
+        if runner.lower() is 'xenon':
+            return call_xenon(job, display, **kwargs)
+        else:
+            return call_default(job, display, **kwargs)
 
-    if runner is None:
-        return call_default(job, **kwargs)
-    elif runner.lower() is 'xenon':
-        return call_xenon(job, **kwargs)
 
-
-def call_default(job, n_processes=1):
+def call_default(job, display, n_processes=1):
     """
     Run locally using several threads.
     """
-    with NCDisplay() as display:
-        return run_parallel_opt(
-            job, n_threads=n_processes,
-            registry= registry, jobdb_file='cache.json',
+    return run_parallel_opt(
+        job, n_threads=n_processes,
+        registry=registry, jobdb_file='cache.json',
+        display=display)
+
+
+def call_xenon(job, display, n_processes=1, jobs_scheme='local'):
+    """
+    Function to use the Xenon infrasctructure to schedule and run
+    jobs remotely. For a detail xenon description look at:
+    http://nlesc.github.io/Xenon/
+
+    For an example of the use of Xenon inside noodles see:
+    https://github.com/NLeSC/noodles/blob/master/test/test_xenon_local.py
+
+
+    :param jobs_scheme: The scheme by which to schedule jobs. Should be one
+    of 'local', 'ssh', 'slurm' etc. See the Xenon documentation.
+    :type jobs_scheme: String
+
+    """
+    # Configure Xenon Instance
+    location = None if jobs_scheme == 'local' else jobs_scheme
+    xenon_config = XenonConfig(jobs_scheme=jobs_scheme, location=location)
+
+    # Configure remote Job
+    job_config = RemoteJobConfig(registry=serial.base, time_out=1)
+ 
+    with XenonKeeper() as Xe:
+        return run_xenon_prov(
+            job, Xe, "cache.json", n_processes, xenon_config, job_config,
             display=display)
-
-
-def call_xenon(job, **kwargs):
-    """
-    See :
-        https://github.com/NLeSC/Xenon-examples/raw/master/doc/tutorial/xenon-tutorial.pdf
-    """
-    pass
-    # nproc = kwargs.get('n_processes')
-    # nproc = nproc if nproc is not None else 1
-
-    # xenon_config = XenonConfig(jobs_scheme='local')
-
-    # job_config = RemoteJobConfig(registry=serial.base, time_out=1)
-
-    # return run_xenon(job, nproc, xenon_config, job_config)
 
 
 class SerMolecule(Serialiser):
