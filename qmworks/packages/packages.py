@@ -2,25 +2,25 @@
 __all__ = ['Package', 'run', 'registry', 'Result',
            'SerMolecule', 'SerSettings']
 
-# ========>  Standard and third party Python Libraries <======
+# ========>  Standard and third party Python Libraries <=======================
 from os.path import join
 
 import plams
 import pkg_resources as pkg
 
 # =========================> Internal modules <================================
-from noodles import (RemoteJobConfig, XenonConfig, XenonKeeper, files,
-                     schedule_hint, has_scheduled_methods, run_xenon_prov,
-                     serial)
+from noodles import (files, schedule_hint, has_scheduled_methods, serial)
 from noodles.display import (NCDisplay)
 from noodles.run.run_with_prov import run_parallel_opt
+from noodles.run.xenon import (run_xenon_prov, XenonConfig,
+                               RemoteJobConfig, XenonKeeper)
 from noodles.serial import (Serialiser, Registry, AsDict)
 from noodles.serial.base import SerAutoStorable
 
 from qmworks.settings import Settings
 from qmworks.fileFunctions import json2Settings
 
-# =============================================================================
+# ====================================<>=======================================
 
 
 class Result:
@@ -169,7 +169,7 @@ def call_xenon(job, display, n_processes=1, jobs_scheme='local'):
 
     # Configure remote Job
     job_config = RemoteJobConfig(registry=serial.base, time_out=1)
-
+ 
     with XenonKeeper() as Xe:
         return run_xenon_prov(
             job, Xe, "cache.json", n_processes, xenon_config, job_config,
