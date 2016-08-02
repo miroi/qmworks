@@ -132,7 +132,7 @@ def run(job, runner=None, **kwargs):
     :type runner: String
     """
     with NCDisplay() as display:
-        if runner.lower() is 'xenon':
+        if runner.lower() in 'xenon':
             return call_xenon(job, display, **kwargs)
         else:
             return call_default(job, display, **kwargs)
