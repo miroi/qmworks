@@ -168,7 +168,7 @@ def call_xenon(job, display, n_processes=1, jobs_scheme='local'):
     xenon_config = XenonConfig(jobs_scheme=jobs_scheme, location=location)
 
     # Configure remote Job
-    job_config = RemoteJobConfig(registry=serial.base, time_out=1)
+    job_config = RemoteJobConfig(registry=registry, time_out=1)
  
     with XenonKeeper() as Xe:
         return run_xenon_prov(
